@@ -1,15 +1,16 @@
 package com.moutain.kotlinlearning
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
+import com.android.internal.policy.PhoneWindow
 import com.moutain.kotlinlearning.databinding.ActivityMainBinding
+import com.moutain.kotlinlearning.util.ReflectionUtils
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,7 +33,19 @@ class MainActivity : AppCompatActivity() {
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show()
 
+            setTheme()
         }
+    }
+
+
+    private fun setTheme(){
+        // 反射命中黑名单： (blacklist, reflection, denied)
+        // 引入 FreeReflection
+        // 反射失败
+//        val window: Any = window
+//        val method = ReflectionUtils.getDeclaredMethod(window,"setTheme", arrayOf(Int::class.java))
+//        method.invoke(window,R.style.Theme_KotlinLearning_v2)
+        (window as PhoneWindow).setTheme(R.style.Theme_KotlinLearning_v2)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
